@@ -1,0 +1,56 @@
+# Configs
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Abstract positions
+alias lefthalf move screenOriginX;screenOriginY screenSizeX*0.52;screenSizeY
+alias righthalf move screenOriginX+screenSizeX*0.52;screenOriginY screenSizeX*0.48;screenSizeY
+alias bottomhalf move screenOriginX;screenOriginY+screenSizeY*1/2 screenSizeX;screenSizeY*1/2
+alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY*1/2
+alias topleft corner top-left resize:screenSizeX*0.52;screenSizeY/2
+alias topleftmost corner top-left resize:screenSizeX*0.52;2*screenSizeY/5
+alias topright corner top-right resize:screenSizeX*0.48;screenSizeY/2
+alias toprightmost corner top-right resize:screenSizeX*0.48;2*screenSizeY/5
+alias bottomleft corner bottom-left resize:screenSizeX*0.52;screenSizeY/2
+alias bottomleftmost corner bottom-left resize:screenSizeX*0.52;3*screenSizeY/5
+alias bottomright corner bottom-right resize:screenSizeX*0.48;screenSizeY/2
+alias bottomrightmost corner bottom-right resize:screenSizeX*0.48;3*screenSizeY/5
+
+alias maximize move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias restore move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*screenSizeX/3;2*screenSizeY/3
+alias sizedown move (screenSizeX-(windowSizeX*0.9))/2;(screenSizeY-(windowSizeY*0.9))/2 windowSizeX*0.9;windowSizeY*0.9
+alias sizeup move (screenSizeX-(windowSizeX*1.1))/2;(screenSizeY-(windowSizeY*1.1))/2 windowSizeX*1.1;windowSizeY*1.1
+
+
+## Application aliases
+alias browser   'Google Chrome'
+alias terminal  'Terminal'
+alias hangouts  'Google Hangouts'
+
+alias laptop    0
+alias monitor   1
+
+alias hyper ctrl;cmd;alt
+ 
+## Window resize bindings
+bind right:${hyper}  ${righthalf}
+bind left:${hyper}   ${lefthalf}
+bind up:${hyper}     ${tophalf}
+bind down:${hyper}   ${bottomhalf}
+bind m:${hyper}      ${maximize}
+bind r:${hyper}      ${restore}
+bind -:${hyper}      ${sizedown}
+bind =:${hyper}      ${sizeup}
+
+## Window focus Bindings
+bind k:${hyper}  focus up
+bind j:${hyper}  focus down
+bind h:${hyper}  focus left
+bind l:${hyper}  focus right
+
+## App bindings
+# These are laid out on the left hand
+bind space:${hyper}  focus ${terminal}
+bind b:${hyper}      focus ${browser}
+bind h:${hyper}      focus ${hangouts}
